@@ -1,4 +1,4 @@
-Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Session' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt 
+Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'data' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt 
 
 whoami | Out-File -FilePath ./Process5.txt -Append
 
