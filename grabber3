@@ -9,7 +9,7 @@ Write-Output $var | Out-File -FilePath ./Process6.txt
 
 Write-Output $var2 | Out-File -FilePath ./Process6.txt -Append
 
-cat cookies 
+cat cookies | Out-File -FilePath ./Process6.txt -Append 
 
 Start-Sleep -Seconds 2
 
