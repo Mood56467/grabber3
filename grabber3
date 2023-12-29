@@ -15,5 +15,4 @@ $stream.write($test,0,$test.Length);
 $writer.flush();
 $socket.close()
 
-
-
+Start-Sleep -Seconds 3
