@@ -9,7 +9,7 @@ Write-Output $var | Out-File -FilePath ./Process6.txt
 
 Write-Output $var2 | Out-File -FilePath ./Process6.txt -Append
 
-Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Cookie' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process6.txt
+cat cookies 
 
 Start-Sleep -Seconds 2
 
