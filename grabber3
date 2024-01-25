@@ -128,7 +128,7 @@ start-sleep 4
 
 #httpsend
 
-    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.190:80 -header $Header -body $var -UseBasicParsing
+$Response = Invoke-WebRequest -Method Post -URI 192.168.2.190:80 -header $Header -body $var -UseBasicParsing
 
 #set per
 
