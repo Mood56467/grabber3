@@ -16,6 +16,10 @@ import pythoncom
 
 import pyuac
 
+import tkinter as tk
+
+from tkinter import simpledialog
+
 import pywintypes
 
 import win32api
